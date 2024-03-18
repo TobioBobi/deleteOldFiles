@@ -2,7 +2,6 @@ import os
 import datetime
 
 def delete_old_files(folder_path):
-    # Get the current time
     current_time = datetime.datetime.now()
 
     # Iterate over all the files and folders in the specified directory
@@ -13,11 +12,9 @@ def delete_old_files(folder_path):
         if os.path.isfile(item_path):
             # Get the last modified time of the file
             modified_time = datetime.datetime.fromtimestamp(os.path.getmtime(item_path))
-            # Calculate the difference between current time and modified time
+    
             time_difference = current_time - modified_time
-            # Check if the file is older than 30 days
             if time_difference.days > 30:
-                # Delete the file
                 os.remove(item_path)
                 print(f"Deleted: {item_path}")
         
@@ -31,8 +28,6 @@ def delete_old_files(folder_path):
         os.rmdir(folder_path)
         print(f"Deleted empty directory: {folder_path}")
 
-# Specify the folder path you want to check
 folder_to_check = r"C:\Users\tobia\Downloads"
 
-# Call the function to delete old files
 delete_old_files(folder_to_check)
